@@ -1,9 +1,8 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom } from 'rxjs';
-import { error } from 'console';
 
 interface ChatGPTRequest {
     model: string;
@@ -32,9 +31,7 @@ export class ChatGPTService {
         this.apiKey = this.configService.get<string>('OPENAI_API_KEY');
     }
 
-    async sendMessage(messages: Array<{ role: 'user' | 'assistant' | 'system'; content: string }>,
-        options?: { model?: string; max_tokens?: number; temperature?: number },
-    ): Promise<string> {
+    async sendMessage(messages: Array<{ role: 'user' | 'assistant' | 'system'; content: string }>, options?: { model?: string; max_tokens?: number; temperature?: number }): Promise<string> {
         const requestPayload: ChatGPTRequest = {
             model: options?.model || 'gpt-4o',
             messages,
@@ -46,14 +43,14 @@ export class ChatGPTService {
             .post(this.apiUrl, requestPayload, {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${this.apiKey}`,
+                    'Authorization': `Bearer ${this.apiKey}`,
                 },
             }))
-            .catch(e => {
+            .catch((e) => {
                 const error = {
                     message: 'An error occurred while sending the message to ChatGPT.',
                     response: e?.response?.data,
-                }
+                };
                 throw error;
             });
 
@@ -63,6 +60,5 @@ export class ChatGPTService {
         }
 
         return messageContent;
-
     }
 }

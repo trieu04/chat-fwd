@@ -6,11 +6,11 @@ import { ChatController } from './chat.controller';
 import { ChatService } from './chat.service';
 
 @Module({
-  imports: [
-    HttpModule,
-    ConfigModule
-  ],
-  controllers: [ChatController],
-  providers: [ChatService, ChatGPTService],
+    imports: [
+        HttpModule,
+        ConfigModule,
+    ],
+    controllers: [ChatController],
+    providers: [ChatService, ChatGPTService],
 })
 export class ChatModule {}

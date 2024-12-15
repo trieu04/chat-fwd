@@ -1,13 +1,10 @@
 Code in C++.
 - Description
-Given a sequence of integers a1, a2, . . ., an. Perform a sequence of Q queries q(i,j) that returns the sum of ai, ai+1, . . ., aj.
-
+Given n jobs J = {1,. . .,n}. Each job i has a deadline d(i) and associated profit p(i) if the job is finished before the deadline. Every job takes the single unit of time, so the minimum possible deadline for any job is 1. It is also noted that no more than one job can be executed at a time.
+Select and schedule a subset of jobs of J such that the total profits is maximal.
 - Input
-Line 1: contains a positive integer n (2 <= n <= 100000)
-Line 2: contains a1, a2, ..., an. (1 <= ai <= 1000)
-Line 3: contains a positive integer Q (1 <= Q <= 100000)
-Line 3 + k (k = 1, 2, ..., Q): contains 2 positive integers i and j (1 <= i < j <= n) of the kth query
- 
+Line 1: contains a positive integer n (1 <= n <= 105)
+Line i+1 (i=1,. . . ,n) contains d(i) and p(i) (1 <= d(i), p(i) <= 105)
 - Output
-Write in each line, the result of the corresponding query read from the input
+Write to total profits obtained from the subset of jobs found.
 
